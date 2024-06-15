@@ -1,7 +1,30 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Review = require("../models/Review");
 require("dotenv").config();
+const mongoose = require("mongoose");
+
+const getReviews = async (req, res) => {
+  const { id } = req.params;
+  const data = await Review.find({ postId: id });
+  res.json(data);
+};
+
+const addReview = async (req, res) => {
+  const { description, rating, userName, postId } = req.body;
+  const data = await Review.create({
+    description,
+    rating,
+    postId,
+    userName,
+  });
+  res.json({
+    success: true,
+    message: "Successfully posted your review!",
+    data,
+  });
+};
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -45,4 +68,4 @@ const register = async (req, res) => {
   });
 };
 
-module.exports = { register, login };
+module.exports = { register, login, addReview, getReviews };

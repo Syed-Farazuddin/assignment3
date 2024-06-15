@@ -1,7 +1,12 @@
 const express = require("express");
 require("./db/db");
 const cors = require("cors");
-const { register, login } = require("./controllers/Controllers.js");
+const {
+  register,
+  login,
+  addReview,
+  getReviews,
+} = require("./controllers/Controllers.js");
 
 const app = express();
 
@@ -12,7 +17,11 @@ app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
+app.post("/add-review", addReview);
+
 app.post("/login", login);
+
+app.get("/getReviews/:id", getReviews);
 
 app.post("/register", register);
 

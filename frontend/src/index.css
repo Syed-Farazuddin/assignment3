@@ -10,3 +10,7 @@
   box-sizing: border-box;
   margin: 0;
 }
+
+.boxShadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

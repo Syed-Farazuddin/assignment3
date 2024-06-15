@@ -20,6 +20,7 @@ function Login() {
     console.log(data);
     if (data.success) {
       localStorage.setItem("token", data.token);
+      localStorage.setItem("User", data.email);
       navigate("/");
     } else {
       setError(data.message);
